@@ -41,9 +41,13 @@ The `extract_xml_snippets.py` script can be invoked as follows:
                             File extension(s) to scan for (multiple extensions can
                             be specified)
       -d, --deletesnippetfolder
-                        Delete .snippet_scan folder if it exists
+                            Delete .snippet_scan folder if it exists
       -o OUTPUTFOLDER, --outputfolder OUTPUTFOLDER
-                        Specify output folder (default .snippet_scan)
+                            Specify output folder (default .snippet_scan)
+
+The -e option can be specified multiple times, for example:
+
+    python3 extract_xml_snippets.py -e .esx -e .esm
 
 # SNIPPET ANALYSIS
 
