@@ -39,7 +39,7 @@ def process_file(filename, snipfolder):
 
 parser = argparse.ArgumentParser(description='Extract source embedded within specified XML format files into .snippet_scan folder (or -o folder) ready for snippet analysis using Detect script.', prog='extract_xml_snippets.py')
 parser.add_argument("-s", "--sourcepath", type=str, default='.', help='Path to scan', required=True)
-parser.add_argument("-e", "--extension", type=str, help='File extension(s) to scan for (multiple extensions can be specified)', action='append', nargs='*')
+parser.add_argument("-e", "--extension", type=str, help='File extension(s) to scan for (multiple extensions can be specified)', action='append', nargs=1)
 parser.add_argument("-d", "--deletesnippetfolder", action='store_true', help='Delete .snippet_scan folder if it exists')
 parser.add_argument("-o", "--outputfolder", type=str, default='.snippet_scan', help='Specify output folder (default .snippet_scan)')
 
@@ -58,6 +58,11 @@ else:
 	os.mkdir(snipfolder)
 
 for ext in args.extension:
-    for filename in Path(args.sourcepath).rglob("*" + ext[0]):
+    if (ext[0][0] != '.'):
+        myext = '.' + ext[0]
+    else:
+    	myext = ext[0]
+		
+    for filename in Path(args.sourcepath).rglob("*" + myext):
         print("Processing file: {}".format(filename))
         process_file(filename, snipfolder)
