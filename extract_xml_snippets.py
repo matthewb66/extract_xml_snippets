@@ -33,6 +33,7 @@ def process_file(filename, snipfolder):
 			process_source(source, snipfolder, filename, filenum, ext)
 			filenum = filenum + 1
 			code = False
+			source = ""
 	f.close()
 	print("  - {} code segments extracted".format(filenum -1))
 	
